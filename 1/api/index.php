@@ -7,9 +7,9 @@ require 'Exception.php';
 require 'PHPMailer.php';
 require 'SMTP.php';
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
-        if (!empty($_POST["email"])) {
+        if (!empty($_GET["email"])) {
 
             // Config
 
@@ -39,7 +39,7 @@ require 'SMTP.php';
             
             $mail->addAddress('igoritoc5@uni9.edu.br', 'Igor');   //Add a recipient
         
-            $mail->addReplyTo($_POST["email"], 'Resposta');
+            $mail->addReplyTo($_GET["email"], 'Resposta');
 
             // Content
 
@@ -49,7 +49,7 @@ require 'SMTP.php';
 
             $mail->Body    = '';
 
-            $mail->AltBody = 'O usuário ' . $_POST["nome"] . ' com telefone de contato: ' . $_POST["telefone"] . '. Entrou em contato em nome da empresa ' . $_POST["company"] . ' com  a mensagem: ' . $_POST["msg"];
+            $mail->AltBody = 'O usuário ' . $_GET["nome"] . ' com telefone de contato: ' . $_GET["telefone"] . '. Entrou em contato em nome da empresa ' . $_GET["company"] . ' com  a mensagem: ' . $_GET["msg"];
 
             $mail->send();
         }
